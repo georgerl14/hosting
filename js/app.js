@@ -27,6 +27,9 @@ AFRAME.registerComponent('shootable', {
                     this.el.parentNode.removeChild(this.el);
                 }, 300);
 
+                const glassSound = document.querySelector('#glassbreak');
+                glassSound.components.sound.playSound();
+                
                 puntuar()
                 finalizar()
             }
@@ -50,7 +53,27 @@ function puntuar() {
 }
 
 function dispararArma() {
+    const cursor = document.querySelector('[cursor]');
+    const gun = document.querySelector('.model_gun');
+    const gunSound = document.querySelector('#gunshot');
+
+    gunSound.components.sound.playSound();
+
+    cursor.setAttribute('material', 'color', 'red');
+    
     document.querySelector('#textoBala').setAttribute('value', `${--bullets} Balas`)
+
+    gun.setAttribute('animation__position', 'property: position; to: 0.02 -0.02 -0.03; dur: 200; easing: easeOutQuad');
+    gun.setAttribute('animation__rotation', 'property: rotation; to: 220 0 190; dur: 200; easing: easeInQuad');
+
+    setTimeout(() => {
+        gun.setAttribute('animation__rotation', 'property: rotation; to: 180 0 190; dur: 200; easing: easeInQuad');
+        gun.setAttribute('animation__position', 'property: position; to: 0.02 -0.02 -0.05; dur: 200; easing: easeOutQuad');
+    }, 200);
+
+    setTimeout(() => {
+        cursor.setAttribute('material', 'color', 'white');
+    }, 300);
 }
 
 function finalizar() {
