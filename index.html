@@ -15,15 +15,19 @@
                     optionalFeatures: dom-overlay, unbounded;
                     overlayElement: #overlay;">
         <a-assets>
-            <img src="texture/sky.jpg" id="sky">
-            <img src="texture/meteor.jpg" id="meteor">
             <img src="texture/wall-texture.jpg" id="wall">
             <img src="texture/ground.jpg" id="ground">
 
             <a-asset-item id="gun" src="elementos/desert_eagle_gun/scene.gltf"></a-asset-item>
             <a-asset-item id="bottle_dusty" src="elementos/dusty_beer_bottle/scene.gltf"></a-asset-item>
             <a-asset-item id="barril" src="elementos/plastic_barrel/scene.gltf"></a-asset-item>
+
+            <audio id="source_gunshot" src="sonido/gunshot.mp3"></audio>
+            <audio id="source_glassbreak" src="sonido/glass-breaking.mp3"></audio>
         </a-assets>
+
+        <a-entity id="gunshot" sound="src: #source_gunshot; autoplay: false; volume: 2;"></a-entity>
+        <a-entity id="glassbreak" sound="src: #source_glassbreak; autoplay: false;"></a-entity>
 
         <a-entity class="room-assets-container">
             <a-plane class="decorado" src="#wall" position="0 0 40" rotation="0 -180 0" width="80"
@@ -94,7 +98,7 @@
             </a-text>
 
             <a-entity cursor="fuse: false" raycaster="objects: .bottle, .decorado" position="0 0 -1"
-                geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03" material="shader: flat">
+                geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"  material="shader: flat">
             </a-entity> 
 
             <a-entity class="model_gun" gltf-model="#gun" position="0.02 -0.02 -0.05" rotation="180 0 190"
