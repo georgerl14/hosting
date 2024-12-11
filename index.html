@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarea || George Razvan Lupu</title>
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+    <script src="js/app.js"></script>
+</head>
+
+<body>
+    <a-scene webxr="requiredFeatures: hit-test, local-floor;
+                    optionalFeatures: dom-overlay, unbounded;
+                    overlayElement: #overlay;">
+        <a-assets>
+            <img src="texture/sky.jpg" id="sky">
+            <img src="texture/meteor.jpg" id="meteor">
+            <img src="texture/wall-texture.jpg" id="wall">
+            <img src="texture/ground.jpg" id="ground">
+
+            <a-asset-item id="gun" src="elementos/desert_eagle_gun/scene.gltf"></a-asset-item>
+            <a-asset-item id="bottle_dusty" src="elementos/dusty_beer_bottle/scene.gltf"></a-asset-item>
+            <a-asset-item id="barril" src="elementos/plastic_barrel/scene.gltf"></a-asset-item>
+        </a-assets>
+
+        <a-entity class="room-assets-container">
+            <a-plane class="decorado" src="#wall" position="0 0 40" rotation="0 -180 0" width="80"
+                height="80"></a-plane>
+            <a-plane class="decorado" src="#wall" position="0 0 -40" rotation="0 0 0" width="80"
+                height="80"></a-plane>
+            <a-plane class="decorado" src="#wall" position="40 0 0" rotation="0 -90 0" width="80"
+                height="80"></a-plane>
+            <a-plane class="decorado" src="#wall" position="-40 0 0" rotation="0 90 0" width="80"
+                height="80"></a-plane>
+            <a-plane class="decorado" src="#ground" position="0 -35 0" rotation="-90 0 0" width="160"
+                height="160"></a-plane>
+            <a-plane class="decorado" src="#ground" position="0 40 0" rotation="90 0 0" width="160"
+                height="160"></a-plane>
+        </a-entity>
+
+        <a-entity class="bottle-container">
+            <a-entity class="alto-bottle-container">
+                <a-entity class="bottle" gltf-model="#bottle_dusty" position="-20 10 -38"
+                    animation="property: position; to: -25 20 -38; dur: 2000; loop: true; dir: alternate;">
+                </a-entity>
+
+                <a-entity class="bottle" gltf-model="#bottle_dusty" position="0 10 -38"
+                    animation="property: position; to: 0 20 -38; dur: 2000; loop: true; dir: alternate;">
+                </a-entity>
+
+                <a-entity class="bottle" gltf-model="#bottle_dusty" position="20 10 -38"
+                    animation="property: position; to: 25 20 -38; dur: 2000; loop: true; dir: alternate;">
+                </a-entity> 
+            </a-entity>
+
+            <a-entity class="medio-bottle-container">
+                <a-entity class="bottle" gltf-model="#bottle_dusty" position="-20 -5 -38"
+                    animation="property: position; to: -25 -5 -38; dur: 2000; loop: true; dir: alternate;">
+                </a-entity>
+
+                <a-entity class="bottle" gltf-model="#bottle_dusty" position="0 -5 -38"
+                    animation="property: rotation; to: 360 0 0; dur: 5000; loop: true; dir: alternate;">
+                </a-entity>
+
+                <a-entity class="bottle" gltf-model="#bottle_dusty" position="20 -5 -38"
+                    animation="property: position; to: 25 -5 -38; dur: 2000; loop: true; dir: alternate;">
+                </a-entity>
+            </a-entity>
+
+            <a-entity class="bajo-bottle-container">
+                <a-entity class="bottle" gltf-model="#bottle_dusty" position="-20 -20 -38"></a-entity>
+                <a-entity class="bottle" gltf-model="#bottle_dusty" position="0 -20 -38"></a-entity>
+                <a-entity class="bottle" gltf-model="#bottle_dusty" position="20 -20 -38"></a-entity>
+            </a-entity>
+        </a-entity>
+
+        <a-entity class="barril-container">
+            <a-entity class="decorado" gltf-model="#barril" position="-20 -35 -37" rotation="0 0 0"
+                scale="0.1 0.1 0.1"></a-entity>
+            <a-entity class="decorado" gltf-model="#barril" position="0 -35 -37" rotation="0 0 0"
+                scale="0.1 0.1 0.1"></a-entity>
+            <a-entity class="decorado" gltf-model="#barril" position="20 -35 -37" rotation="0 0 0"
+                scale="0.1 0.1 0.1"></a-entity>
+        </a-entity>
+
+        <a-entity camera look-controls="pointerLockEnabled: true" position="0 -20 10">
+            <a-text id="contador" value="0 Botellas" color="black" position="0 0.5 -1" width="1"
+                align="center" font="mozillavr">
+            </a-text>
+
+            <a-text id="textoBala" color="black" position="0 -0.1 -1" width="1" align="center" font="mozillavr">
+            </a-text>
+
+            <a-entity cursor="fuse: false" raycaster="objects: .bottle, .decorado" position="0 0 -1"
+                geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03" material="shader: flat">
+            </a-entity> 
+
+            <a-entity class="model_gun" gltf-model="#gun" position="0.02 -0.02 -0.05" rotation="180 0 190"
+                scale="0.0001 0.0001 0.0001">
+            </a-entity>
+
+            <a-plane id="panelFinal" position="0 0 -1" rotation="0 0 0" width="4" height="2" color="green"
+                visible="false">
+                <a-text id="textoFinal" value="Botellas disparadas: " align="center" color="white" width="4"
+                        font="mozillavr"></a-text>
+                <a-text value="Espera para el reinicio" align="center" position="0 -0.4 0" scale="0.3 0.3 0.3" 
+                        font="mozillavr"></a-text>
+            </a-plane>
+        </a-entity>
+
+    </a-scene>
+</body>
+
+</html>
