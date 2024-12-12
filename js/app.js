@@ -1,6 +1,7 @@
 window.addEventListener('load', initScene)
 
 let bullets = 9, score = 0
+let canShoot = true;
 
 function initScene() { 
     let botellas = document.querySelectorAll('.bottle')
@@ -12,14 +13,12 @@ function initScene() {
     decoraciones.forEach(decorado => {
         decorado.setAttribute('disparable_no_puntuable', '')
     })
-
-    document.querySelector('#textoBala').setAttribute('value', `${bullets} Balas`)
 }
 
 AFRAME.registerComponent('disparable_puntuable', {
     init: function () {
         this.el.addEventListener('click', () => {
-            if (bullets > 0) {
+            if (bullets > 0 && canShoot) {
                 dispararArma()
                 
                 this.el.setAttribute('animation', 'property: scale; to: 0 0 0; dur: 100');
@@ -37,7 +36,7 @@ AFRAME.registerComponent('disparable_puntuable', {
 AFRAME.registerComponent('disparable_no_puntuable', {
     init: function () {
         this.el.addEventListener('click', () => {
-            if (bullets > 0) {
+            if (bullets > 0 && canShoot) {
                 dispararArma()
                 finalizar()
             }
@@ -47,12 +46,13 @@ AFRAME.registerComponent('disparable_no_puntuable', {
 
 function puntuar() {
     document.querySelector('#glassbreak').components.sound.playSound();
-    document.querySelector('#contador').setAttribute('value', `${++score} Botellas`)
+    ++score
 }
 
 function dispararArma() {
     const cursor = document.querySelector('[cursor]');
     const gun = document.querySelector('.model_gun');
+    const bullet = document.querySelector(`#bullet${bullets}`)
 
     //Realizar el sonido de disparo.
     document.querySelector('#gunshot').components.sound.playSound();
@@ -66,28 +66,32 @@ function dispararArma() {
     
     //Revertir las animaciones de posicion y rotación a la pistola.
     setTimeout(() => {
-        gun.setAttribute('animation__rotation', 'property: rotation; to: 180 0 190; dur: 200; easing: easeInQuad');
+        gun.setAttribute('animation__rotation', 'property: rotation; to: 180 0 180; dur: 200; easing: easeInQuad');
         gun.setAttribute('animation__position', 'property: position; to: 0 -0.3 -0.6; dur: 200; easing: easeOutQuad');
     }, 200);
 
-    //Cambiar el color del cursor a blanco, tras 300 miligundos.
-    setTimeout(() => {
-        cursor.setAttribute('material', 'color', 'white');
-    }, 300);
+    //Modifica la opacidad de las balas a la mita.
+    bullet.setAttribute('material', 'opacity', '0.5')
     
-    //Modificar el texto de munición y reducir la cantidad de balas.
-    document.querySelector('#textoBala').setAttribute('value', `${--bullets} Balas`)
+    canShoot = false
+    --bullets
+
+    setTimeout(() => {
+        canShoot = true
+        cursor.setAttribute('material', 'color', 'white')
+    }, 700)
 }
 
 function finalizar() {
     if (bullets == 0) {
         setTimeout(function() {
-            document.querySelector('#textoFinal').setAttribute('value', `Botellas disparadas: ${score}`)
+            document.querySelector('#textoFinal').setAttribute('value', `Botellas rotas: ${score}`)
             document.querySelector('#panelFinal').setAttribute('visible', 'true')
-            document.querySelector('#textoBala').setAttribute('visible', 'false')
-            document.querySelector('#contador').setAttribute('visible', 'false')
+            
             document.querySelector('.model_gun').setAttribute('visible', 'false')
+            document.querySelector('#bulletIcons').setAttribute('visible', 'false')
         }, 500);
+        
         setTimeout(function() {
             resetear()
         }, 2500);
