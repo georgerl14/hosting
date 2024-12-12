@@ -1,0 +1,11 @@
+Model Information:
+* title:	Friday The 13th Barn
+* source:	https://sketchfab.com/3d-models/friday-the-13th-barn-2db2513be9424526bf8f4b9dc1dd405f
+* author:	JasonKills (https://sketchfab.com/ITZCLIX2)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Friday The 13th Barn" (https://sketchfab.com/3d-models/friday-the-13th-barn-2db2513be9424526bf8f4b9dc1dd405f) by JasonKills (https://sketchfab.com/ITZCLIX2) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
