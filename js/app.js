@@ -61,13 +61,13 @@ function dispararArma() {
     cursor.setAttribute('material', 'color', 'red');
     
     //Realizar animaciones de posicion y rotación a la pistola.
-    gun.setAttribute('animation__position', 'property: position; to: 0.2 -0.02 -0.08; dur: 200; easing: easeOutQuad');
+    gun.setAttribute('animation__position', 'property: position; to: 0.2 -0.02 -0.3; dur: 200; easing: easeOutQuad');
     gun.setAttribute('animation__rotation', 'property: rotation; to: 220 0 190; dur: 200; easing: easeInQuad');
     
     //Revertir las animaciones de posicion y rotación a la pistola.
     setTimeout(() => {
         gun.setAttribute('animation__rotation', 'property: rotation; to: 180 0 190; dur: 200; easing: easeInQuad');
-        gun.setAttribute('animation__position', 'property: position; to: 0.2 -0.02 -0.1; dur: 200; easing: easeOutQuad');
+        gun.setAttribute('animation__position', 'property: position; to: 0.2 -0.02 -0.2; dur: 200; easing: easeOutQuad');
     }, 200);
 
     //Cambiar el color del cursor a blanco, tras 300 miligundos.
@@ -90,10 +90,12 @@ function finalizar() {
         }, 500);
         setTimeout(function() {
             resetear()
-        }, 2000);
+        }, 2500);
     }
 }
 
 function resetear() {
     location.reload();
 }
+
+
