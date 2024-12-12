@@ -90,19 +90,19 @@
         </a-entity>
 
         <a-entity camera look-controls="pointerLockEnabled: true" position="0 -20 10">
-            <a-text id="contador" value="0 Botellas" color="black" position="0 0.3 -1" width="1"
+            <a-text id="contador" value="0 Botellas" color="black" position="0 0.3 -1.5" width="1"
                 align="center" font="mozillavr">
             </a-text>
 
-            <a-text id="textoBala" color="black" position="0 -0.1 -1" width="1" align="center" font="mozillavr">
+            <a-text id="textoBala" color="black" position="0 -0.1 -1.5" width="1" align="center" font="mozillavr">
             </a-text>
 
-            <a-entity cursor="fuse: false" raycaster="objects: .bottle, .decorado" position="0 0 -1"
+            <a-entity cursor="fuse: false" raycaster="objects: .bottle, .decorado" position="0 0 -1.5"
                 geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"  material="shader: flat">
             </a-entity> 
 
-            <a-entity class="model_gun" gltf-model="#gun" position="0 -0.02 -0.05" rotation="180 0 180"
-                scale="0.0001 0.0001 0.0001">
+            <a-entity class="model_gun" gltf-model="#gun" position="0 -0.3 -1" rotation="180 0 180"
+                scale="0.001 0.001 0.001">
             </a-entity>
 
             <a-plane id="panelFinal" position="0 0 -1" rotation="0 0 0" width="4" height="2" color="black"
