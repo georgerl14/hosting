@@ -66,7 +66,7 @@ function dispararArma() {
     
     //Revertir las animaciones de posicion y rotación a la pistola.
     setTimeout(() => {
-        gun.setAttribute('animation__rotation', 'property: rotation; to: 180 0 190; dur: 200; easing: easeInQuad');
+        gun.setAttribute('animation__rotation', 'property: rotation; to: 180 0 180; dur: 200; easing: easeInQuad');
         gun.setAttribute('animation__position', 'property: position; to: 0 -0.3 -0.6; dur: 200; easing: easeOutQuad');
     }, 200);
 
