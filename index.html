@@ -15,33 +15,36 @@
                     optionalFeatures: dom-overlay, unbounded;
                     overlayElement: #overlay;">
         <a-assets>
-            <img src="texture/wall-texture.jpg" id="wall">
-            <img src="texture/ground.jpg" id="ground">
-
             <a-asset-item id="gun" src="elementos/desert_eagle_gun/scene.gltf"></a-asset-item>
             <a-asset-item id="bottle_dusty" src="elementos/dusty_beer_bottle/scene.gltf"></a-asset-item>
             <a-asset-item id="barril" src="elementos/plastic_barrel/scene.gltf"></a-asset-item>
-
+            <a-asset-item id="casa" src="elementos/friday_the_13th_barn/scene.gltf"></a-asset-item>
+            
             <audio id="source_gunshot" src="sonido/gunshot.mp3"></audio>
             <audio id="source_glassbreak" src="sonido/glass-breaking.mp3"></audio>
         </a-assets>
 
+        <a-sky color="black"></a-sky>
+
         <a-entity id="gunshot" sound="src: #source_gunshot; autoplay: false; volume: 2;"></a-entity>
         <a-entity id="glassbreak" sound="src: #source_glassbreak; autoplay: false;"></a-entity>
 
+        <a-entity class="house" gltf-model="#casa" position="-87 -38 115" scale="5 5 5">
+        </a-entity>
+
         <a-entity class="room-assets-container">
-            <a-plane class="decorado" src="#wall" position="0 0 40" rotation="0 -180 0" width="80"
-                height="80"></a-plane>
-            <a-plane class="decorado" src="#wall" position="0 0 -40" rotation="0 0 0" width="80"
-                height="80"></a-plane>
-            <a-plane class="decorado" src="#wall" position="40 0 0" rotation="0 -90 0" width="80"
-                height="80"></a-plane>
-            <a-plane class="decorado" src="#wall" position="-40 0 0" rotation="0 90 0" width="80"
-                height="80"></a-plane>
-            <a-plane class="decorado" src="#ground" position="0 -35 0" rotation="-90 0 0" width="160"
-                height="160"></a-plane>
-            <a-plane class="decorado" src="#ground" position="0 40 0" rotation="90 0 0" width="160"
-                height="160"></a-plane>
+            <a-plane id="wall" class="decorado" position="0 0 40" rotation="0 -180 0" width="80"
+                height="80" visible="false"></a-plane>
+            <a-plane id="wall" class="decorado" position="0 0 -40" rotation="0 0 0" width="80"
+                height="80" visible="false"></a-plane>
+            <a-plane id="wall" class="decorado" position="40 0 0" rotation="0 -90 0" width="80"
+                height="80" visible="false"></a-plane>
+            <a-plane id="wall" class="decorado" position="-40 0 0" rotation="0 90 0" width="80"
+                height="80" visible="false"></a-plane>
+            <a-plane id="ground" class="decorado" position="0 -35 0" rotation="-90 0 0" width="160"
+                height="160" visible="false"></a-plane>
+            <a-plane id="ground" class="decorado" position="0 40 0" rotation="90 0 0" width="160"
+                height="160" visible="false"></a-plane>
         </a-entity>
 
         <a-entity class="bottle-container">
@@ -89,14 +92,19 @@
                 scale="0.1 0.1 0.1"></a-entity>
         </a-entity>
 
-        <a-entity camera look-controls="pointerLockEnabled: true" position="0 -20 10">
-            <a-text id="contador" value="0 Botellas" color="black" position="0 0.3 -1.5" width="1"
-                align="center" font="mozillavr">
-            </a-text>
-
-            <a-text id="textoBala" color="black" position="0 -0.1 -1.5" width="1" align="center" font="mozillavr">
-            </a-text>
-
+        <a-entity camera look-controls="pointerLockEnabled: true" position="0 -10 10">
+            <a-entity id="bulletIcons">
+                <a-image id="bullet9" src="texture/balaReal.png" position="0.15 -0.3 -0.5" rotation="0 0 90" scale="0.03 0.009"></a-image>
+                <a-image id="bullet8" src="texture/balaReal.png" position="0.16 -0.3 -0.5" rotation="0 0 90" scale="0.03 0.010"></a-image>
+                <a-image id="bullet7" src="texture/balaReal.png" position="0.17 -0.3 -0.5" rotation="0 0 90" scale="0.03 0.009"></a-image>
+                <a-image id="bullet6" src="texture/balaReal.png" position="0.19 -0.3 -0.5" rotation="0 0 90" scale="0.03 0.009"></a-image>
+                <a-image id="bullet5" src="texture/balaReal.png" position="0.20 -0.3 -0.5" rotation="0 0 90" scale="0.03 0.009"></a-image>
+                <a-image id="bullet4" src="texture/balaReal.png" position="0.21 -0.3 -0.5" rotation="0 0 90" scale="0.03 0.009"></a-image>
+                <a-image id="bullet3" src="texture/balaReal.png" position="0.23 -0.3 -0.5" rotation="0 0 90" scale="0.03 0.009"></a-image>
+                <a-image id="bullet2" src="texture/balaReal.png" position="0.24 -0.3 -0.5" rotation="0 0 90" scale="0.03 0.009"></a-image>
+                <a-image id="bullet1" src="texture/balaReal.png" position="0.25 -0.3 -0.5" rotation="0 0 90" scale="0.03 0.009"></a-image>
+            </a-entity>
+            
             <a-entity cursor="fuse: false" raycaster="objects: .bottle, .decorado" position="0 0 -1.5"
                 geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"  material="shader: flat">
             </a-entity> 
